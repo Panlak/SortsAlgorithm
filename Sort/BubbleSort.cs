@@ -1,17 +1,24 @@
 ﻿using Pastel;
 using System;
+using System.Numerics;
 
 namespace Bubble_Sort
 {
 	public  class BubbleSortAlg
 	{
+		protected static void Swap(ref BigInteger aFirstArg, ref BigInteger aSecondArg)
+		{
+			BigInteger tmpParam = aFirstArg;
+			aFirstArg = aSecondArg;
+			aSecondArg = tmpParam;
+		}
 		protected static void Swap(ref int aFirstArg, ref int aSecondArg)
 		{
 			int tmpParam = aFirstArg;
 			aFirstArg = aSecondArg;
 			aSecondArg = tmpParam;
 		}
-		public static void Bubble_Sort(int[] anArray)
+		public static void Bubble_Sort(BigInteger[] anArray)
 		{
 
 			for (int i = 0; i < anArray.Length; i++)
@@ -20,14 +27,14 @@ namespace Bubble_Sort
 				{
 					if (anArray[j] > anArray[j + 1])
 					{
-						Print(anArray, j, j + 1,true);
+						
 						Swap(ref anArray[j], ref anArray[j + 1]);
-						Print(anArray, j, j + 1, false);
+						
 					}
 				}
 			}
 		}
-		public static void Print(int[] arrey ,int num1 , int num2,bool flag)
+		public static void Print(BigInteger[] arrey , BigInteger num1 , BigInteger num2,bool flag)
 		{
 			if (flag)
 			{

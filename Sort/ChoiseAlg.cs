@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,33 +10,23 @@ namespace Sort
 {
 	public  class ChoiseAlg : BubbleSortAlg
     {
-        static int IndexOfMin(int[] array, int n)
+        public static BigInteger[] ViborSort(BigInteger[] mas)
         {
-            int result = n;
-            for (var i = n; i < array.Length; ++i)
-            {
-                if (array[i] < array[result])
+
+            for (int i = 0; i < mas.Length - 1; i++)
+            {         
+                int min = i;
+                for (int j = i + 1; j < mas.Length; j++)
                 {
-                    result = i;
+                    if (mas[j] < mas[min])
+                    {
+                        min = j;
+                    }
                 }
+                Swap(ref mas[min],ref mas[i]);
+             
             }
-
-            return result;
-        }
-        public static int[] SelectionSort(int[] array, int currentIndex = 0)
-        {
-            if (currentIndex == array.Length)
-                return array;
-
-            var index = IndexOfMin(array, currentIndex);
-            if (index != currentIndex)
-            {
-                Print(array, array[index], array[currentIndex],true);
-                Swap(ref array[index], ref array[currentIndex]);
-                Print(array, array[index], array[currentIndex], false);
-            }
-
-            return SelectionSort(array, currentIndex + 1);
+            return mas;
         }
     }
 }

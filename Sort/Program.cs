@@ -2,6 +2,8 @@
 using Sort;
 using System;
 using Pastel;
+using System.Numerics;
+using System.Diagnostics;
 namespace BubbleSort
 {
 	//n^2
@@ -13,7 +15,7 @@ namespace BubbleSort
 			Console.InputEncoding = System.Text.Encoding.Unicode;
 			Console.WriteLine("Сортування бульбальшкою");
 			Console.Write("Початковий масив:\t");
-			int[] someArray = new int[] { 1, 2, 4, 3, 8, 5, 7, 6, 9, 0 };
+			BigInteger[] someArray = new BigInteger[] { 1, 2, 4, 3, 8, 5, 7, 6, 9, 0 };
 			Print(someArray,false);
 			Console.WriteLine();
 			BubbleSortAlg.Bubble_Sort(someArray);
@@ -21,28 +23,43 @@ namespace BubbleSort
 			Print(someArray,true);
 			Console.WriteLine("-----------------------------------------------------------------------------");
 			////////////////////////////////////////////////////////////
-			Console.WriteLine("Сортування вибором");	
-			someArray = new int[] { 1, 2, 4, 3, 8, 5, 7, 6, 9, 0 };
+			Console.WriteLine("Сортування вибором");
+			BigInteger[] someArraySelection = new BigInteger[] { 1, 2, 4, 3, 8, 5, 7, 6, 9, 0 };
 			Console.Write("Початковий масив:\t");
 			Print(someArray, false);
 			Console.WriteLine();
-			ChoiseAlg.SelectionSort(someArray);
+			ChoiseAlg.ViborSort(someArraySelection);
 			Console.Write("Відсортований  масив:\t");
 			Print(someArray,true);
 			Console.WriteLine();
 			Console.WriteLine("-----------------------------------------------------------------------------");
 			////////////////////////////////////////////////////////////
 			Console.WriteLine("Сортування вставкою");		
-			someArray = new int[] { 1, 2, 4, 3, 8, 5, 7, 6, 9, 0 };
+			someArray = new BigInteger[] { 40, 30, 10, 70, 50, 20, 60, };
 			Console.Write("Початковий масив:\t");
 			Print(someArray,false);
 			Console.WriteLine();
 			InsertSortAlg.InsertionSort(someArray);
 			Console.Write("Відсортований  масив:\t");
 			Print(someArray,true);
-		}
 
-		public static void Print(int[] arrey,bool color)
+			Console.WriteLine("-------------------------------------------------------------------------------");
+			Random random = new Random();
+			BigInteger[] arrey = new BigInteger[10000];
+			var sw = new Stopwatch();			
+			for (int i = 0; i < arrey.Length; i++)
+			{
+				arrey[i] = random.Next(10,100);
+			}
+			sw.Start();
+			InsertSortAlg.InsertionSort(arrey);
+			sw.Stop();
+			Console.WriteLine($"Time Spent: {sw.Elapsed}");
+
+
+
+		}
+		public static void Print(BigInteger[] arrey,bool color)
 		{
 			for (int i = 0; i < arrey.Length; i++)
 			{
